@@ -7,7 +7,7 @@ const SignIn = (props) => {
   // props.navigation.navigate();
   const { navigation } = props;
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
       <Text>Componente SignIn</Text>
       <Button
         title="Navegar a SignUp"
@@ -21,7 +21,7 @@ const SignIn = (props) => {
 const SignUp = (props) => {
   const { navigation } = props;
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
       <Text>Componente SignUp</Text>
       <Button
         title="Regresar"
@@ -33,12 +33,29 @@ const SignUp = (props) => {
   );
 };
 
-const RutasNoAutenticadas = createStackNavigator({
-  SignIn: {
-    screen: SignIn,
+const RutasNoAutenticadas = createStackNavigator(
+  {
+    SignIn: {
+      screen: SignIn,
+      // // navigationOptions: {
+      // //   header: null,
+
+      // },
+    },
+    SignUp: {
+      screen: SignUp,
+      // navigationOptions: {
+      //   title: 'SignUp título desde screen',
+      // },
+    },
   },
-  SignUp: {
-    screen: SignUp,
+  {
+    headerMode: 'none',
   },
-});
+  //  El Stack sigue esta configuracion
+  //   navigationOptions: {
+  //     title: 'Titulo del desde el StackNavigator',
+  // //   },
+  // },
+);
 export { RutasNoAutenticadas };

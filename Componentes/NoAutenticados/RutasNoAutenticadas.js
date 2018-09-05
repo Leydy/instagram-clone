@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Button, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 const SignIn = (props) => {
   console.log(props);
@@ -33,7 +33,7 @@ const SignUp = (props) => {
   );
 };
 
-const RutasNoAutenticadas = createStackNavigator(
+const RutasNoAutenticadas = StackNavigator(
   {
     SignIn: {
       screen: SignIn,

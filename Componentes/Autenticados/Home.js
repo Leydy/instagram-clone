@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
+        <Text>Miau</Text>
       </View>
     );
   }

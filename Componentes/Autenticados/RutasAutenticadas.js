@@ -21,6 +21,8 @@ const RutasAutenticadas = TabNavigator({
   Profile: {
     screen: Profile,
   },
-
+},
+{
+  tabBarPosition: 'bottom',
 });
 export { RutasAutenticadas };

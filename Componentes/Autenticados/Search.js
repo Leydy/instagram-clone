@@ -1,14 +1,21 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 // create a component
 class Search extends Component {
   render() {
+    const { navigation } = this.props;
     return (
-          <View style={styles.container}>
-              <Text>Search</Text>
-            </View>
+      <View style={styles.container}>
+        <Text>Search</Text>
+        <Button
+          title="Publicacion"
+          onPress={() => {
+            navigation.navigate('Publicacion');
+          }}
+        />
+      </View>
     );
   }
 }

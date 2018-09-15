@@ -4,6 +4,10 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 // create a component
 class Comentarios extends Component {
+  static navigationOptions = {
+    tabBarVisible: false,
+  };
+
   render() {
     const { navigation } = this.props;
     return (

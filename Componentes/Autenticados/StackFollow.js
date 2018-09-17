@@ -7,6 +7,9 @@ import Comentarios from './Comentarios';
 const StackFollow = StackNavigator({
   TabFollow: {
     screen: TabFollow,
+    navigationOptions: {
+      header: null,
+    },
   },
   Autor: {
     screen: Autor,

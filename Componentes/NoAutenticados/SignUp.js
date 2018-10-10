@@ -1,7 +1,8 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
+import SignUpForm from './Formas/SignUpForm';
 
 // create a component
 class SignUp extends Component {
@@ -11,6 +12,8 @@ class SignUp extends Component {
     return (
       <View style={styles.container}>
         <Text>SignUp</Text>
+        <SignUpForm />
+        <TextInput placeholder="correo@correo.com" />
         <Button
           title="Aumentar"
           onPress={this.props.aumentar}
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#fff',
   },
 });
 // Pasa el state "reducerPrueba"

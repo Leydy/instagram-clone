@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 
 // combineReducers
 const reducerPrueba = (state = [0], action) => {
@@ -12,6 +13,7 @@ const reducerPrueba = (state = [0], action) => {
 const reducers = combineReducers({
   // reducerPrueba: reducerPrueba,
   reducerPrueba,
+  form,
 });
 const store = createStore(reducers);
 export default store;

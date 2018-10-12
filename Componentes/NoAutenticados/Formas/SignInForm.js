@@ -48,6 +48,7 @@ const SignInForm = (props) => {
       <Field name="correo" component={fieldNombre} ph="correo@correo.com" />
       <Field name="password" component={fieldNombre} ph="*****" />
       <Button
+style={styles.btn}
         title="SignIn"
         onPress={props.handleSubmit((values) => {
           console.log(values);
@@ -63,5 +64,8 @@ const styles = StyleSheet.create({
   errors: {
     color: '#FF0000'
   },
+  btn: {
+    color: '#ffccff'
+  }
 });
 export default reduxForm({ form: 'SignInForm', validate, })(SignInForm);

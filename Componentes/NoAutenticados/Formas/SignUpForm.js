@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, ImageBackground } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 
 const fieldNombre = (props) => {
   console.log(props);
   return (
-    <View>
+    <View style={styles.textInput}>
       <TextInput
         placeholder={props.ph}
         onChangeText={props.input.onChange}
         value={props.input.value}
         keyboardType={props.input.name === 'correo' ? 'email-address' : 'default'}
         autoCapitalize="none"
+        underlineColorAndroid="#ffccff"
         secureTextEntry={!!(props.input.name === 'password' || props.input.name === 'confirmacion')}
         onBlur={props.input.onBlur}
       />
-      {props.meta.touched && props.meta.error && <Text>{props.meta.error}</Text>}
+      {props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
     </View>
 
   );
@@ -58,7 +59,6 @@ const SignUpForm = (props) => {
       <Field name="correo" component={fieldNombre} ph="correo@correo.com" />
       <Field name="password" component={fieldNombre} ph="*****" />
       <Field name="confirmacion" component={fieldNombre} ph="*****" />
-      <Text>Redux Form</Text>
       <Button
         title="Registrar"
         onPress={props.handleSubmit((values) => {
@@ -68,5 +68,17 @@ const SignUpForm = (props) => {
     </View>
   );
 };
+const styles = StyleSheet.create({
+  textInput: {
+    marginBottom: 16,
+  },
+  errors: {
+    color: '#FF0000'
+  },
 
+  // linea: {
+  //   backgroundColor: '#DCDCDC',
+  //   height: 2,
+  // },
+});
 export default reduxForm({ form: 'SignUpForm', validate, })(SignUpForm);

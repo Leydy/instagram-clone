@@ -16,7 +16,9 @@
     "react-navigation": "^1.5.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-form": "^7.4.2"
+    "redux-form": "^7.4.2",
+    "fetch": "^1.1.0",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

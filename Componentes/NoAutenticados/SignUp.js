@@ -6,6 +6,11 @@ import SignUpForm from './Formas/SignUpForm';
 
 // create a component
 class SignUp extends Component {
+  registroDeUsuario =(values) => {
+    console.log(values);
+    this.props.registro(values);
+  }
+
   render() {
     console.log(this.props.numero);
 
@@ -14,7 +19,7 @@ class SignUp extends Component {
     return (
 
       <View style={styles.container}>
-        <SignUpForm />
+        <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"
           onPress={() => {
@@ -45,8 +50,8 @@ const mapStateToProps = state => ({
 });
 // un dispatch tiene una llave type
 const mapDispatchToProps = dispatch => ({
-  aumentar: () => {
-    dispatch({ type: 'AUMENTAR_REDUCER_PRUEBA' });
+  registro: (values) => {
+    dispatch({ type: 'REGISTRO', datos: values });
   },
 });
 

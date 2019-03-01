@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import { autenticacion } from '../../../Store/Servicios/Firebase';
 
 const fieldNombre = (props) => {
-  console.log('inputs');
   return (
     <View style={styles.textInput}>
       <TextInput
@@ -52,7 +51,6 @@ const validate = (values) => {
   return errors;
 }
 const SignUpForm = (props) => {
-  console.log('signupform');
   return (
 
     <View>

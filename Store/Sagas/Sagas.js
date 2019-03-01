@@ -11,11 +11,8 @@ const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos.ref(`usuar
 function* generadoraRegistro(values) {
   try {
     const registro = yield call(registroEnFirebase, values.datos);
-    // console.log(registro);
     const { email, uid } = registro;
-    // console.log(values);
     const { datos: { nombre } } = values;
-    // uid, email, nombre
     yield call(registroEnBaseDeDatos, { uid, email, nombre });
   } catch (error) {
     console.log(error);

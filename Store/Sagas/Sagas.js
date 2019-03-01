@@ -8,7 +8,7 @@ const registroEnFirebase = values => autenticacion
 const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos.ref(`usuarios/${uid}`).set({
   nombre, email,
 });
-function* generadoraRegistro(values) {
+function* sagaRegistro(values) {
   try {
     const registro = yield call(registroEnFirebase, values.datos);
     const { email, uid } = registro;
@@ -18,7 +18,24 @@ function* generadoraRegistro(values) {
     console.log(error);
   }
 }
+
+const loginEnFirebase = ({ correo, password }) => autenticacion.signInWithEmailAndPassword(correo, password)
+  // Handle Errors here.
+  .then(success => success.user.toJSON());
+
+function* sagaLogin(values) {
+  try {
+    console.log(values);
+    const resultado = yield call(loginEnFirebase, values.datos);
+    console.log(resultado);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 export default function* funcionPrimaria() {
-  yield takeEvery('REGISTRO', generadoraRegistro)
+  yield takeEvery('REGISTRO', sagaRegistro)
+  yield takeEvery('LOGIN', sagaLogin)
   console.log('Desde nuestra función generadora');
 }

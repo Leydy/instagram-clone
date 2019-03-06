@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { autenticacion } from './Store/Servicios/Firebase';
 import { RutasNoAutenticadas } from './Componentes/NoAutenticados/RutasNoAutenticadas';
+import { RutasAutenticadas } from './Componentes/Autenticados/RutasAutenticadas';
 import { actionEstablecerSesion, actionCerrarSesion } from './Store/Acciones';
 
 
@@ -14,7 +15,7 @@ class Seleccion extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <RutasNoAutenticadas />
+        {this.props.usuario ? <RutasAutenticadas /> : <RutasNoAutenticadas />}
       </View>
     );
   }
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  prop: state.prop,
+  usuario: state.reducerSesion,
 });
 const mapDispatchToProps = dispatch => ({
   autenticacion: () => {

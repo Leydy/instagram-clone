@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignInForm from './Formas/SignInForm';
+import { actionLogin } from '../../Store/Acciones';
 
 
 // create a component
@@ -42,7 +43,7 @@ const mapStateToProps = state => ({
 // un dispatch tiene una llave type
 const mapDispatchToProps = dispatch => ({
   login: (datos) => {
-    dispatch({ type: 'LOGIN', datos })
+    dispatch(actionLogin(datos));
   },
 });
 // make this component available to the app

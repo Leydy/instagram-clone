@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
 import SignUpForm from './Formas/SignUpForm';
+import { actionRegistro } from '../../Store/Acciones';
 
 // create a component
 class SignUp extends Component {
@@ -51,7 +52,7 @@ const mapStateToProps = state => ({
 // un dispatch tiene una llave type
 const mapDispatchToProps = dispatch => ({
   registro: (values) => {
-    dispatch({ type: 'REGISTRO', datos: values });
+    dispatch(actionRegistro(values));
   },
 });
 

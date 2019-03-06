@@ -1,5 +1,7 @@
 const constantes = {
   REGISTRO: 'REGISTRO',
-  LOGIN: 'LOGIN'
+  LOGIN: 'LOGIN',
+  ESTABLECER_SESION: 'ESTABLECER_SESION',
+  CERRAR_SESION: 'CERRAR_SESION',
 };
 export default constantes;

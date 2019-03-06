@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { RutasNoAutenticadas } from './Componentes/NoAutenticados/RutasNoAutenticadas';
 import { RutasAutenticadas } from './Componentes/Autenticados/RutasAutenticadas';
 import Store from './Store/Store';
+import Seleccion from './Seleccion';
 
 console.disableYellowBox = ['Remote debugger'];
 
@@ -17,7 +18,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Provider store={Store}>
-          <RutasNoAutenticadas />
+          <Seleccion />
         </Provider>
       </View>
     );

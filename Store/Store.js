@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reducer as form } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import functionPrimaria from './Sagas/Sagas';
+import constantes from './Constantes';
 
 // combineReducers
 const reducerPrueba = (state = [0], action) => {
@@ -13,9 +14,20 @@ const reducerPrueba = (state = [0], action) => {
   }
 };
 
+const reducerSesion = (state = null, action) => {
+  switch (action.type) {
+    case constantes.ESTABLECER_SESION:
+      return action.usuario;
+    case constantes.CERRAR_SESION:
+      return null;
+    default:
+      return state;
+  }
+}
 const sagaMiddleware = createSagaMiddleware();
 const reducers = combineReducers({
   // reducerPrueba: reducerPrueba,
+  reducerSesion,
   reducerPrueba,
   form,
 });

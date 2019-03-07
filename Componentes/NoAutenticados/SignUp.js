@@ -1,17 +1,22 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, ImageBackground } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
 import SignUpForm from './Formas/SignUpForm';
 import { actionRegistro } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
+import constantes from '../../Store/Constantes';
 
 // create a component
 class SignUp extends Component {
+  componentWillUnmount() {
+    this.props.limpiarImagen();
+  }
+
   registroDeUsuario =(values) => {
     console.log(values);
     this.props.registro(values);
-  }
+  };
 
   render() {
     console.log(this.props.numero);
@@ -21,7 +26,7 @@ class SignUp extends Component {
     return (
 
       <View style={styles.container}>
-        <SeleccionarImagen />
+        <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} />
         <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"
@@ -50,11 +55,18 @@ const styles = StyleSheet.create({
 // Pasa el state "reducerPrueba"
 const mapStateToProps = state => ({
   numero: state.reducerPrueba,
+  imagen: state.reducerImagenSignUp,
 });
 // un dispatch tiene una llave type
 const mapDispatchToProps = dispatch => ({
   registro: (values) => {
     dispatch(actionRegistro(values));
+  },
+  cargarImagen: (imagen) => {
+    dispatch({ type: constantes.CARGAR_IMAGEN_SIGNUP, imagen: imagen });
+  },
+  limpiarImagen: () => {
+    dispatch({ type: constantes.LIMPIAR_IMAGEN_SIGNUP });
   },
 });
 

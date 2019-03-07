@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image, View } from 'react-native';
+import { Button, Image, View, TouchableOpacity } from 'react-native';
 import { ImagePicker } from 'expo';
 
 export default class SeleccionarImagen extends React.Component {
@@ -11,17 +11,24 @@ export default class SeleccionarImagen extends React.Component {
     const { image } = this.state;
     return (
       <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="Pick an image from camera roll"
-          onPress={this._pickImage}
-        />
-        {image
-          && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        <TouchableOpacity onPress={this.seleccionarImagen}>
+          {
+            this.state.image 
+            ? <Image
+              source={{uri: this.state.image}}
+              style={{ width: 160, height: 160, borderRadius: 80 }}
+            /> :
+            <Image
+              source={require('../assets/nn.png')}
+              style={{ width: 160, height: 160, borderRadius: 80 }}
+            />
+        }
+        </TouchableOpacity>
       </View>
     );
   }
 
-  _pickImage = async () => {
+  seleccionarImagen = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],

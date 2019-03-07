@@ -4,6 +4,7 @@ import { View, StyleSheet, Button, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
 import SignUpForm from './Formas/SignUpForm';
 import { actionRegistro } from '../../Store/Acciones';
+import SeleccionarImagen from '../SeleccionarImagen';
 
 // create a component
 class SignUp extends Component {
@@ -20,6 +21,7 @@ class SignUp extends Component {
     return (
 
       <View style={styles.container}>
+        <SeleccionarImagen />
         <SignUpForm registro={this.registroDeUsuario} />
         <Button
           title="SignIn"

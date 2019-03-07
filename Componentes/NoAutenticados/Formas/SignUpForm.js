@@ -53,7 +53,8 @@ const validate = (values) => {
 const SignUpForm = (props) => {
   return (
 
-    <View>
+    <View style={styles.container}>
+
       <Field name="nombre" component={fieldNombre} ph="nombre" />
       <Field name="correo" component={fieldNombre} ph="correo@correo.com" />
       <Field name="password" component={fieldNombre} ph="*****" />
@@ -82,6 +83,9 @@ const SignUpForm = (props) => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    flex: 3,
+  },
   textInput: {
     marginBottom: 16,
   },

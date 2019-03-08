@@ -6,8 +6,8 @@ const registroEnFirebase = values => autenticacion
   .createUserWithEmailAndPassword(values.correo, values.password)
   .then(success => success.user.toJSON());
 
-const registroEnBaseDeDatos = ({ uid, email, nombre }) => baseDeDatos.ref(`usuarios/${uid}`).set({
-  nombre, email,
+const registroEnBaseDeDatos = ({ uid, email, nombre, fotoURL }) => baseDeDatos.ref(`usuarios/${uid}`).set({
+  nombre, email, fotoURL,
 });
 const registroFotoCloudinary = ({ imagen }) => {
   console.log(imagen);
@@ -16,27 +16,31 @@ const registroFotoCloudinary = ({ imagen }) => {
   const name = [...splitName].pop();
   const foto = {
     uri,
-    type,
-    name
-  }
-  // const formImagen = new FormData();
-  // formImagen.append('upload_preset', constantes.CLOUDINARY_PRESET);
-  // formImagen.append('file', foto);
-  // return fetch(constantes.CLOUDINARY_NAME, {
-  //   method: 'POST',
-  //   body:
-  // })
-}
+    type: 'image/jpeg',
+    name,
+  };
+  const formImagen = new FormData();
+  formImagen.append('upload_preset', constantes.CLOUDINARY_PRESET);
+  formImagen.append('file', foto);
+
+  return fetch(constantes.CLOUDINARY_NAME, {
+    method: 'POST',
+    body: formImagen,
+  }).then(response => response.json());
+};
 function* sagaRegistro(values) {
   try {
     // cargar foto
     const imagen = yield select(state => state.reducerImagenSignUp);
     console.log(imagen);
     const urlFoto = yield call(registroFotoCloudinary, imagen);
-    // const registro = yield call(registroEnFirebase, values.datos);
-    // const { email, uid } = registro;
-    // const { datos: { nombre } } = values;
-    // yield call(registroEnBaseDeDatos, { uid, email, nombre });
+    console.log(urlFoto);
+    console.log(urlFoto.secure_url);
+    const fotoURL = urlFoto.secure_url;
+    const registro = yield call(registroEnFirebase, values.datos);
+    const { email, uid } = registro;
+    const { datos: { nombre } } = values;
+    yield call(registroEnBaseDeDatos, { uid, email, nombre, fotoURL });
   } catch (error) {
     console.log(error);
   }

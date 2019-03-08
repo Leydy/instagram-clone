@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
+import { blur, change } from 'redux-form';
 import SignUpForm from './Formas/SignUpForm';
 import { actionRegistro, actionCargarImagen, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
@@ -27,7 +28,7 @@ class SignUp extends Component {
 
       <View style={styles.container}>
         <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} />
-        <SignUpForm registro={this.registroDeUsuario} />
+        <SignUpForm registro={this.registroDeUsuario} imagen={this.props.imagen.imagen} />
         <Button
           title="SignIn"
           onPress={() => {
@@ -65,12 +66,12 @@ const mapDispatchToProps = dispatch => ({
   cargarImagen: (imagen) => {
     // dispatch({ type: constantes.CARGAR_IMAGEN_SIGNUP, imagen: imagen });
     dispatch(actionCargarImagenSignUp(imagen));
+    dispatch(blur('SignUpForm', 'imagen', Date.now()));
   },
   limpiarImagen: () => {
     // dispatch({ type: constantes.LIMPIAR_IMAGEN_SIGNUP });
     dispatch(actionLimpiarImagenSignUp());
   },
 });
-
 // make this component available to the app
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -3,27 +3,39 @@ import { View, Text, StyleSheet, TextInput, Button, ImageBackground } from 'reac
 import { Field, reduxForm } from 'redux-form';
 import { autenticacion } from '../../../Store/Servicios/Firebase';
 
-const fieldNombre = (props) => {
-  return (
-    <View style={styles.textInput}>
-      <TextInput
-        placeholder={props.ph}
-        onChangeText={props.input.onChange}
-        value={props.input.value}
-        keyboardType={props.input.name === 'correo' ? 'email-address' : 'default'}
-        autoCapitalize="none"
-        underlineColorAndroid="#ffccff"
-        secureTextEntry={!!(props.input.name === 'password' || props.input.name === 'confirmacion')}
-        onBlur={props.input.onBlur}
-      />
-      {props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
+
+const fieldNombre = props => (
+  <View style={styles.textInput}>
+    <TextInput
+      placeholder={props.ph}
+      onChangeText={props.input.onChange}
+      value={props.input.value}
+      keyboardType={props.input.name === 'correo' ? 'email-address' : 'default'}
+      autoCapitalize="none"
+      underlineColorAndroid="#ffccff"
+      secureTextEntry={!!(props.input.name === 'password' || props.input.name === 'confirmacion')}
+      onBlur={props.input.onBlur}
+    />
+    {props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
+  </View>
+
+);
+const fieldImagen = props => (
+  <View>
+    <View>
+      {props.meta.touched
+      && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
     </View>
+  </View>
+)
 
-  );
-}
 
-const validate = (values) => {
+const validate = (values, props) => {
+  console.log('ejecutando validacion');
   const errors = {};
+  if (!props.imagen) {
+    errors.imagen = 'Imagen es requerida'
+  }
   if (!values.nombre) {
     errors.nombre = 'Campo requerido'
   } else if (values.nombre.length < 5) {
@@ -55,6 +67,7 @@ const SignUpForm = (props) => {
 
     <View style={styles.container}>
 
+      <Field name="imagen" component={fieldImagen} />
       <Field name="nombre" component={fieldNombre} ph="nombre" />
       <Field name="correo" component={fieldNombre} ph="correo@correo.com" />
       <Field name="password" component={fieldNombre} ph="*****" />

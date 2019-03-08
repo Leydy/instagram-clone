@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
 import SignUpForm from './Formas/SignUpForm';
-import { actionRegistro } from '../../Store/Acciones';
+import { actionRegistro, actionCargarImagen, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
 import constantes from '../../Store/Constantes';
 
@@ -63,10 +63,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionRegistro(values));
   },
   cargarImagen: (imagen) => {
-    dispatch({ type: constantes.CARGAR_IMAGEN_SIGNUP, imagen: imagen });
+    // dispatch({ type: constantes.CARGAR_IMAGEN_SIGNUP, imagen: imagen });
+    dispatch(actionCargarImagenSignUp(imagen));
   },
   limpiarImagen: () => {
-    dispatch({ type: constantes.LIMPIAR_IMAGEN_SIGNUP });
+    // dispatch({ type: constantes.LIMPIAR_IMAGEN_SIGNUP });
+    dispatch(actionLimpiarImagenSignUp());
   },
 });
 

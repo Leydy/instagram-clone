@@ -2,8 +2,8 @@ import { TabNavigator } from 'react-navigation';
 import { StackHome } from './StackHome';
 import { StackSearch } from './StackSearch';
 import { StackFollow } from './StackFollow';
-import Add from './Add';
 import Profile from './Profile';
+import { StackAdd } from './StackAdd';
 
 const RutasAutenticadas = TabNavigator({
   Home: {
@@ -13,7 +13,7 @@ const RutasAutenticadas = TabNavigator({
     screen: StackSearch,
   },
   Add: {
-    screen: Add,
+    screen: StackAdd,
   },
   Follow: {
     screen: StackFollow,

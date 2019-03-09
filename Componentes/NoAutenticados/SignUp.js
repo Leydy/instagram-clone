@@ -2,11 +2,10 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';// permite adornar el componente e integrarle la store y el dispatch
-import { blur, change } from 'redux-form';
+import { blur } from 'redux-form';
 import SignUpForm from './Formas/SignUpForm';
-import { actionRegistro, actionCargarImagen, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/Acciones';
+import { actionRegistro, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
-import constantes from '../../Store/Constantes';
 
 // create a component
 class SignUp extends Component {
@@ -15,14 +14,10 @@ class SignUp extends Component {
   }
 
   registroDeUsuario =(values) => {
-    console.log(values);
     this.props.registro(values);
   };
 
   render() {
-    console.log(this.props.numero);
-
-
     const { navigation } = this.props;
     return (
 

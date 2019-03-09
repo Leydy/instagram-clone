@@ -7,6 +7,8 @@ const constantes = {
   CARGAR_IMAGEN_SIGNUP: 'CARGAR_IMAGEN_SIGNUP',
   CLOUDINARY_NAME: 'https://api.cloudinary.com/v1_1/iclone/image/upload',
   CLOUDINARY_PRESET: 'dmiuctv8',
+  CARGAR_IMAGEN_PUBLICACION: 'CARGAR_IMAGEN_PUBLICACION',
+  LIMPIAR_IMAGEN_PUBLICACION: 'LIMPIAR_IMAGEN_PUBLICACION',
 
 };
 export default constantes;

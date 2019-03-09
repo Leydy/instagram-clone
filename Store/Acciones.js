@@ -24,3 +24,10 @@ export const actionCargarImagenSignUp = imagen => ({
 export const actionLimpiarImagenSignUp = () => ({
   type: constantes.LIMPIAR_IMAGEN_SIGNUP,
 });
+export const actionCargarImagenPublicacion = imagen => ({
+  type: constantes.CARGAR_IMAGEN_PUBLICACION,
+  imagen,
+});
+export const actionLimpiarImagenPublicacion = () => ({
+  type: constantes.LIMPIAR_IMAGEN_PUBLICACION,
+});

@@ -8,24 +8,28 @@ import SeleccionarImagen from '../SeleccionarImagen';
 
 // create a component
 class SeleccionarGaleria extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.imagen}>
-          <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} />
+    static navigationOptions={
+      tabBarVisible: false,
+    };
+
+    render() {
+      return (
+        <View style={styles.container}>
+          <View style={styles.imagen}>
+            <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} radius />
+          </View>
+          <View style={styles.texto}>
+            <Text>SeleccionarGaleria</Text>
+          </View>
+          <View style={styles.boton}>
+            <Button
+              title="Publicar"
+              onPress={() => { console.log('Publicado...') }}
+            />
+          </View>
         </View>
-        <View style={styles.texto}>
-          <Text>SeleccionarGaleria</Text>
-        </View>
-        <View style={styles.boton}>
-          <Button
-            title="Publicar"
-            onPress={() => { console.log('Publicado...') }}
-          />
-        </View>
-      </View>
-    );
-  }
+      );
+    }
 }
 
 // define your styles

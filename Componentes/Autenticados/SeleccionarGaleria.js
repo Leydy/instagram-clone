@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { blur } from 'redux-form';
 import { actionCargarImagenPublicacion } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
-
+import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 
 // create a component
 class SeleccionarGaleria extends Component {
@@ -19,7 +20,7 @@ class SeleccionarGaleria extends Component {
             <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} radius />
           </View>
           <View style={styles.texto}>
-            <Text>SeleccionarGaleria</Text>
+            <SeleccionarGaleriaForm imagen={this.props.imagen.imagen} registro={(values) => { console.log(values); }} />
           </View>
           <View style={styles.boton}>
             <Button
@@ -56,12 +57,12 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    cargarImagen: (imagen) => {
-      dispatch(actionCargarImagenPublicacion(imagen));
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  cargarImagen: (imagen) => {
+    dispatch(actionCargarImagenPublicacion(imagen));
+    dispatch(blur('SeleccionarGaleriaForm', 'imagen', Date.now()));
+  },
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SeleccionarGaleria);

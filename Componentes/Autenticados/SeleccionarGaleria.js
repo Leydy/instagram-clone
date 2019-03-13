@@ -22,12 +22,6 @@ class SeleccionarGaleria extends Component {
           <View style={styles.texto}>
             <SeleccionarGaleriaForm imagen={this.props.imagen.imagen} registro={(values) => { console.log(values); }} />
           </View>
-          <View style={styles.boton}>
-            <Button
-              title="Publicar"
-              onPress={() => { console.log('Publicado...') }}
-            />
-          </View>
         </View>
       );
     }
@@ -37,7 +31,6 @@ class SeleccionarGaleria extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: '#ffccff',
   },
   imagen: {
@@ -45,9 +38,6 @@ const styles = StyleSheet.create({
   },
   texto: {
     flex: 2
-  },
-  boton: {
-    flex: 1
   }
 });
 

@@ -12,8 +12,11 @@ const fieldTexto = props => (
       keyboardType="default"
       autoCapitalize="none"
       onBlur={props.input.onBlur}
+      underlineColorAndroid="transparent"
+      multiline
     />
-    {props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
+    {props.meta.touched
+     && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
   </View>
 
 );
@@ -33,8 +36,8 @@ const validate = (values, props) => {
   if (!props.imagen) {
     errors.imagen = 'Imagen es requerida'
   }
-  if (values.texto && !values.texto.length > 140) {
-    errors.nombre = 'Debe ser menor de 10 caracteres'
+  if (values.texto && values.texto.length > 140) {
+    errors.texto = 'Debe ser menor de 140 caracteres'
   }
 
   return errors;
@@ -45,21 +48,15 @@ const SeleccionarGaleriaForm = props => (
 
     <Field name="imagen" component={fieldImagen} />
 
-    <View style={styles.textAreaContainer}>
-      <TextInput
-        style={styles.textArea}
-        multiline
-        numberOfLines={4}
-        name="texto"
-        component={fieldTexto}
-        underlineColorAndroid="transparent"
-        ph="Texto de la imagen"
-      />
-    </View>
+    <Field name="texto" component={fieldTexto} ph="Texto de la imagen" />
+
     <Button
+      style={styles.btn}
+
       title="Registrar"
       onPress={props.handleSubmit(props.registro)}
     />
+
   </View>
 );
 // {
@@ -84,22 +81,18 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   textInput: {
-    marginBottom: 16,
+    marginHorizontal: 16,
+    marginBottom: 25,
     borderWidth: 1,
   },
   errors: {
     color: '#FF0000'
   },
-  textAreaContainer: {
-    borderColor: '#FF0000',
-    borderWidth: 1,
-    padding: 5
+  btn: {
+
+    borderRadius: 10
   },
-  textArea: {
-    height: 100,
-    width: 150,
-    // justifyContent: 'flex-start'
-  },
+  // justifyContent: 'flex-start'
 
   // linea: {
   //   backgroundColor: '#DCDCDC',

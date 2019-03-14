@@ -71,8 +71,6 @@ function* sagaSubirPublicacion({ values }) {
     const parametrosImagen = { width, height, secure_url };
     const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
     console.log(escribirEnFirebase);
-    console.log(values);
-    console.log(values.texto);
   } catch (error) {
     console.log(error);
   }

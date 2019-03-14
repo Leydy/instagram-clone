@@ -51,7 +51,6 @@ const SeleccionarGaleriaForm = props => (
     <Field name="texto" component={fieldTexto} ph="Texto de la imagen" />
 
     <Button
-      style={styles.btn}
 
       title="Registrar"
       onPress={props.handleSubmit(props.registro)}
@@ -88,10 +87,7 @@ const styles = StyleSheet.create({
   errors: {
     color: '#FF0000'
   },
-  btn: {
 
-    borderRadius: 10
-  },
   // justifyContent: 'flex-start'
 
   // linea: {

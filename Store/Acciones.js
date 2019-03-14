@@ -31,3 +31,7 @@ export const actionCargarImagenPublicacion = imagen => ({
 export const actionLimpiarImagenPublicacion = () => ({
   type: constantes.LIMPIAR_IMAGEN_PUBLICACION,
 });
+export const actionSubirPublicacion = values => ({
+  type: constantes.SUBIR_PUBLICACION,
+  values,
+});

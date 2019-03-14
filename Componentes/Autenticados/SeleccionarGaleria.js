@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { blur } from 'redux-form';
-import { actionCargarImagenPublicacion } from '../../Store/Acciones';
+import { actionCargarImagenPublicacion, actionSubirPublicacion } from '../../Store/Acciones';
 import SeleccionarImagen from '../SeleccionarImagen';
 import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 
@@ -20,7 +20,13 @@ class SeleccionarGaleria extends Component {
             <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} radius />
           </View>
           <View style={styles.texto}>
-            <SeleccionarGaleriaForm imagen={this.props.imagen.imagen} registro={(values) => { console.log(values); }} />
+            <SeleccionarGaleriaForm
+              imagen={this.props.imagen.imagen}
+              registro={(values) => {
+                this.props.subirPublicacion();
+                console.log(values);
+              }}
+            />
           </View>
         </View>
       );
@@ -52,6 +58,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCargarImagenPublicacion(imagen));
     dispatch(blur('SeleccionarGaleriaForm', 'imagen', Date.now()));
   },
+  subirPublicacion: (values) => {
+    dispatch(actionSubirPublicacion(values));
+  }
 });
 
 

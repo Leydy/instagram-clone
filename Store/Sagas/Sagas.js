@@ -45,7 +45,6 @@ function* sagaRegistro(values) {
     console.log(error);
   }
 }
-
 const loginEnFirebase = ({ correo, password }) => autenticacion.signInWithEmailAndPassword(correo, password)
   // Handle Errors here.
   .then(success => success.user.toJSON());
@@ -59,10 +58,10 @@ function* sagaLogin(values) {
     console.log(error);
   }
 }
-const escribirFirebase = ({ width, height, secure_url }) => baseDeDatos.ref('publicaciones/').push({
-  width, height, secure_url
+const escribirFirebase = ({ width, height, secure_url }, texto = '') => baseDeDatos.ref('publicaciones/').push({
+  width, height, secure_url, texto,
 }).then(response => response);
-function* sagaSubirPublicacion(values) {
+function* sagaSubirPublicacion({ values }) {
   try {
     const imagen = yield select(state => state.reducerImagenPublicacion);
     // console.log(imagen);
@@ -70,9 +69,10 @@ function* sagaSubirPublicacion(values) {
     console.log(resultadoImagen);
     const { width, height, secure_url } = resultadoImagen;
     const parametrosImagen = { width, height, secure_url };
-    const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen);
+    const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
     console.log(escribirEnFirebase);
-    // console.log(values);
+    console.log(values);
+    console.log(values.texto);
   } catch (error) {
     console.log(error);
   }

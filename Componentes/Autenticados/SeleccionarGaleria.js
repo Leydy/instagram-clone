@@ -23,7 +23,7 @@ class SeleccionarGaleria extends Component {
             <SeleccionarGaleriaForm
               imagen={this.props.imagen.imagen}
               registro={(values) => {
-                this.props.subirPublicacion();
+                this.props.subirPublicacion(values);
                 console.log(values);
               }}
             />

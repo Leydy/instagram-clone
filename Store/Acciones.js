@@ -35,3 +35,6 @@ export const actionSubirPublicacion = values => ({
   type: constantes.SUBIR_PUBLICACION,
   values,
 });
+export const actionDescargarPublicaciones = () => ({
+  type: constantes.DESCARGAR_PUBLICACIONES,
+})

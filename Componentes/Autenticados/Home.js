@@ -3,9 +3,15 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, Button,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { actionDescargarPublicaciones } from '../../Store/Acciones';
 
 // create a component
 class Home extends Component {
+  componentDidMount() {
+    this.props.descargarPublicaciones();
+  }
+
   render() {
     // console.log(this.props);
     const { navigation } = this.props;
@@ -38,6 +44,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#2c3e50',
   },
 });
+const mapStateToProps = state => ({
+  prop: state.prop,
+});
 
+const mapDispatchToProps = dispatch => ({
+  descargarPublicaciones: () => {
+    dispatch(actionDescargarPublicaciones());
+  },
+});
 // make this component available to the app
-export default Home;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

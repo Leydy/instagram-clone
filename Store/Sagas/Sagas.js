@@ -61,6 +61,9 @@ function* sagaLogin(values) {
 const escribirFirebase = ({ width, height, secure_url, uid }, texto = '') => baseDeDatos.ref('publicaciones/').push({
   width, height, secure_url, texto, uid,
 }).then(response => response);
+const escribirAutorPublicaciones = ({ uid, key }) => baseDeDatos.ref(`autor-publicaciones/${uid}`).update({ [key]: true })
+  .then(response => response);
+
 function* sagaSubirPublicacion({ values }) {
   try {
     const imagen = yield select(state => state.reducerImagenPublicacion);
@@ -74,6 +77,10 @@ function* sagaSubirPublicacion({ values }) {
     const parametrosImagen = { width, height, secure_url, uid };
     const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
     console.log(escribirEnFirebase.key);
+    const { key } = escribirEnFirebase;
+    const parametrosAutorPublicaciones = { uid, key };
+    const resultadoEscribirAutorPublicaciones = yield call(escribirAutorPublicaciones, parametrosAutorPublicaciones);
+    console.log(resultadoEscribirAutorPublicaciones);
   } catch (error) {
     console.log(error);
   }

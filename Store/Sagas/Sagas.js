@@ -1,6 +1,7 @@
-import { takeEvery, call, select } from 'redux-saga/effects';
+import { takeEvery, call, select, put } from 'redux-saga/effects';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import constantes from '../Constantes';
+import { actionAgregarPublicacionesStore } from '../Acciones';
 
 const registroEnFirebase = values => autenticacion
   .createUserWithEmailAndPassword(values.correo, values.password)
@@ -88,17 +89,21 @@ function* sagaSubirPublicacion({ values }) {
 const descargarPublicaciones = () => baseDeDatos
   .ref('publicaciones/')
   .once('value')
-  .then(snapshot => snapshot.forEach((childSnapshot) => {
-    const { key } = childSnapshot;
-    const publicacion = childSnapshot.val();
-    publicacion.key = key;
-    console.log(publicacion);
-    return null;
-  }));
+  .then((snapshot) => {
+    const publicaciones = [];
+    snapshot.forEach((childSnapshot) => {
+      const { key } = childSnapshot;
+      const publicacion = childSnapshot.val();
+      publicacion.key = key;
+      publicaciones.push(publicacion);
+    });
+    return publicaciones;
+  });
 function* sagaDescargarPublicaciones() {
   try {
     const publicaciones = yield call(descargarPublicaciones);
-    console.log(publicaciones);
+    // console.log(publicaciones);
+    yield put(actionAgregarPublicacionesStore(publicaciones));
   } catch (error) {
     console.log(error);
   }

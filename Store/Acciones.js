@@ -38,3 +38,7 @@ export const actionSubirPublicacion = values => ({
 export const actionDescargarPublicaciones = () => ({
   type: constantes.DESCARGAR_PUBLICACIONES,
 })
+export const actionAgregarPublicacionesStore = publicaciones => ({
+  type: constantes.AGREGAR_PUBLICACIONES_STORE,
+  publicaciones,
+})

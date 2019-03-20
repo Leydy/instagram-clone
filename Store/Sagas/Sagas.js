@@ -85,9 +85,16 @@ function* sagaSubirPublicacion({ values }) {
     console.log(error);
   }
 }
-const descargarPublicaciones = () => baseDeDatos.ref('publicaciones/')
+const descargarPublicaciones = () => baseDeDatos
+  .ref('publicaciones/')
   .once('value')
-  .then(response => response);
+  .then(snapshot => snapshot.forEach((childSnapshot) => {
+    const { key } = childSnapshot;
+    const publicacion = childSnapshot.val();
+    publicacion.key = key;
+    console.log(publicacion);
+    return null;
+  }));
 function* sagaDescargarPublicaciones() {
   try {
     const publicaciones = yield call(descargarPublicaciones);

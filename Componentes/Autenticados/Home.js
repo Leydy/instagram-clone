@@ -1,7 +1,7 @@
 // import liraries
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Button,
+  View, Text, StyleSheet, Button, FlatList, Image, Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import { actionDescargarPublicaciones } from '../../Store/Acciones';
@@ -17,7 +17,20 @@ class Home extends Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Miau</Text>
+        <FlatList
+          data={this.props.publicaciones}
+          renderItem={({ item }) => {
+            const { width } = Dimensions.get('window');
+            console.log(width);
+            const factor = item.width / width;
+            const height = item.height / factor;
+            return <Image
+              source={{ uri: item.secure_url }}
+              style={{ width, height }}
+            />;
+          }}
+        />
+        {/* <Text>Miau</Text>
         <Button
           title="Autor"
           onPress={() => {
@@ -29,7 +42,7 @@ class Home extends Component {
           onPress={() => {
             navigation.navigate('Comentarios');
           }}
-        />
+        /> */}
       </View>
     );
   }

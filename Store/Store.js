@@ -50,7 +50,7 @@ const reducerPublicacionesDescargadas = (state = [], action) => {
   switch (action.type) {
     case constantes.AGREGAR_PUBLICACIONES_STORE:
 
-      return [...state, action.publicaciones];
+      return [...state, ...action.publicaciones];
     default:
       return state;
   }

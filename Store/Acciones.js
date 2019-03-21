@@ -42,3 +42,7 @@ export const actionAgregarPublicacionesStore = publicaciones => ({
   type: constantes.AGREGAR_PUBLICACIONES_STORE,
   publicaciones,
 })
+export const actionAgregarAutoresStore = autores => ({
+  type: constantes.AGREGAR_AUTORES_STORE,
+  autores,
+})

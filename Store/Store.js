@@ -55,9 +55,20 @@ const reducerPublicacionesDescargadas = (state = [], action) => {
       return state;
   }
 }
+
+const reducerAutoresDescargados = (state = [], action) => {
+  switch (action.type) {
+    case constantes.AGREGAR_AUTORES_STORE:
+
+      return [...state, ...action.autores];
+    default:
+      return state;
+  }
+}
 const sagaMiddleware = createSagaMiddleware();
 const reducers = combineReducers({
   // reducerPrueba: reducerPrueba,
+  reducerAutoresDescargados,
   reducerPublicacionesDescargadas,
   reducerImagenPublicacion,
   reducerImagenSignUp,

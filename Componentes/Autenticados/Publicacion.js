@@ -5,15 +5,20 @@ import { View, Text, StyleSheet, Button, Dimensions, Image } from 'react-native'
 // create a component
 class Publicacion extends Component {
   render() {
-    const { navigation, item } = this.props;
+    console.log(this.props.autor);
+    const { navigation, item, autor } = this.props;
     const { width } = Dimensions.get('window');
     console.log(width);
     const factor = item.width / width;
     const height = item.height / factor;
     return (
       <View>
-        <View>
-          <Text>{item.uid}</Text>
+        <View style={styles.header}>
+          <Image
+            source={{ uri: autor.fotoURL }}
+            style={{ width: 48, height: 48, borderRadius: 24 }}
+          />
+          <Text>{autor.nombre}</Text>
         </View>
         <Image source={{ uri: item.secure_url }} style={{ width, height }} />
         <View>
@@ -33,6 +38,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#2c3e50',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 16,
+    marginBottom: 16,
   },
 });
 

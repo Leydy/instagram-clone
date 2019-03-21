@@ -15,12 +15,12 @@ class Home extends Component {
 
   render() {
     console.log(this.props.publicaciones);
-    const { navigation } = this.props;
+    const { navigation, autores } = this.props;
     return (
       <View style={styles.container}>
         <FlatList
           data={this.props.publicaciones}
-          renderItem={({ item }) => <Publicacion item={item} />}
+          renderItem={({ item, index }) => <Publicacion item={item} autor={autores[index]} />}
           ItemSeparatorComponent={() => <View style={styles.separador} />}
 
         />
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = state => ({
   publicaciones: state.reducerPublicacionesDescargadas,
+  autores: state.reducerAutoresDescargados,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { actionDescargarPublicaciones } from '../../Store/Acciones';
+import Publicacion from './Publicacion';
 
 // create a component
 class Home extends Component {
@@ -19,16 +20,9 @@ class Home extends Component {
       <View style={styles.container}>
         <FlatList
           data={this.props.publicaciones}
-          renderItem={({ item }) => {
-            const { width } = Dimensions.get('window');
-            console.log(width);
-            const factor = item.width / width;
-            const height = item.height / factor;
-            return <Image
-              source={{ uri: item.secure_url }}
-              style={{ width, height }}
-            />;
-          }}
+          renderItem={({ item }) => <Publicacion item={item} />}
+          ItemSeparatorComponent={() => <View style={styles.separador} />}
+
         />
         {/* <Text>Miau</Text>
         <Button
@@ -55,6 +49,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#2c3e50',
+  },
+  separador: {
+    borderWidth: 1,
+    borderColor: '#ffccff',
   },
 });
 const mapStateToProps = state => ({

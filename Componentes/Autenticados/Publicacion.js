@@ -1,26 +1,26 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions, Image } from 'react-native';
 
 // create a component
 class Publicacion extends Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation, item } = this.props;
+    const { width } = Dimensions.get('window');
+    console.log(width);
+    const factor = item.width / width;
+    const height = item.height / factor;
     return (
-      <View style={styles.container}>
-        <Text>Publicacion</Text>
-        <Button
-          title="Autor"
-          onPress={() => {
-            navigation.navigate('Autor');
-          }}
-        />
-        <Button
-          title="Comentarios"
-          onPress={() => {
-            navigation.navigate('Comentarios');
-          }}
-        />
+      <View>
+        <View>
+          <Text>{item.uid}</Text>
+        </View>
+        <Image source={{ uri: item.secure_url }} style={{ width, height }} />
+        <View>
+          <Text>Likes</Text>
+          <Text>Comentarios</Text>
+        </View>
+
       </View>
     );
   }

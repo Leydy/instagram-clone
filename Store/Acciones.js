@@ -37,12 +37,18 @@ export const actionSubirPublicacion = values => ({
 });
 export const actionDescargarPublicaciones = () => ({
   type: constantes.DESCARGAR_PUBLICACIONES,
-})
+});
 export const actionAgregarPublicacionesStore = publicaciones => ({
   type: constantes.AGREGAR_PUBLICACIONES_STORE,
   publicaciones,
-})
+});
 export const actionAgregarAutoresStore = autores => ({
   type: constantes.AGREGAR_AUTORES_STORE,
   autores,
+});
+export const actionExitoSubirPublicacion = () => ({
+  type: constantes.EXITO_SUBIR_PUBLICACION,
+});
+export const actionErrorSubirPublicacion = () => ({
+  type: constantes.ERROR_SUBIR_PUBLICACION,
 })

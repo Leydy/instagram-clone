@@ -65,9 +65,20 @@ const reducerAutoresDescargados = (state = [], action) => {
       return state;
   }
 }
+const reducerExitoSubirPublicacion = (state = { estado: null }, action) => {
+  switch (action.type) {
+    case constantes.EXITO_SUBIR_PUBLICACION:
+      return { estado: 'EXITO' };
+    case constantes.ERROR_SUBIR_PUBLICACION:
+      return { estado: 'ERROR' };
+    default:
+      return state;
+  }
+};
 const sagaMiddleware = createSagaMiddleware();
 const reducers = combineReducers({
   // reducerPrueba: reducerPrueba,
+  reducerExitoSubirPublicacion,
   reducerAutoresDescargados,
   reducerPublicacionesDescargadas,
   reducerImagenPublicacion,

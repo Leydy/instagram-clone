@@ -17,6 +17,22 @@ class SeleccionarGaleria extends Component {
       this.props.limpiarImagen();
     }
 
+    componentWillReceiveProps(nextProps) {
+      if (this.props.estadoSubirPublicacion !== nextProps.estadoSubirPublicacion) {
+        switch (nextProps.estadoSubirPublicacion) {
+          case 'EXITO':
+            console.log('exito');
+            this.props.navigation.goBack();
+            break;
+          case 'ERROR':
+            console.log('error');
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
     render() {
       return (
         <View style={styles.container}>
@@ -54,6 +70,7 @@ const styles = StyleSheet.create({
 // make this component available to the app
 const mapStateToProps = state => ({
   imagen: state.reducerImagenPublicacion,
+  estadoSubirPublicacion: state.reducerExitoSubirPublicacion.estado,
 });
 
 

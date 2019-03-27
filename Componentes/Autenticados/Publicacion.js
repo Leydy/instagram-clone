@@ -57,10 +57,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#2c3e50',
   },
   header: {
+    marginVertical: 16,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     paddingHorizontal: 16,
-    marginBottom: 16,
+
 
   },
   txtHeader: {
